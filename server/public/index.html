@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Cam</title>
+</head>
+<body>
+    <img id="video" width="320" height="240" alt="ESP32 Stream">
+    <script>
+        const ws = new WebSocket('ws://192.168.15.5:5001');
+        ws.onmessage = message => {
+            document.getElementById('video').src = "data:image/jpeg;base64," + message.data;
+        }
+    </script>
+</body>
+</html>
